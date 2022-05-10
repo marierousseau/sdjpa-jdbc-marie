@@ -1,11 +1,9 @@
 package com.marie.springjdbc.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
+@NamedQuery(name = "Book.jpaNamed", query = "FROM Book b where b.title = :title")
 @Entity
 public class Book {
 
@@ -16,7 +14,7 @@ public class Book {
     private String title;
     private String isbn;
     private String publisher;
-    private Author authorId;
+    private Long authorId;
 
     public Book() {
 
@@ -64,7 +62,6 @@ public class Book {
     }
 
     public void setIsbn(String isbn) {
-
         this.isbn = isbn;
     }
 
@@ -76,11 +73,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public Author getAuthor() {
+    public Long getAuthorId() {
         return authorId;
     }
 
-    public void setAuthor(Author authorId) {
+    public void setAuthorId(Long authorId) {
         this.authorId = authorId;
     }
 }
