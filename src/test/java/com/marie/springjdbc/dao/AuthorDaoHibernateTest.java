@@ -1,5 +1,7 @@
 package com.marie.springjdbc.dao;
 
+import com.marie.springjdbc.dao.authordao.AuthorDao;
+import com.marie.springjdbc.dao.extradaos.AuthorDaoHibernate;
 import com.marie.springjdbc.domain.Author;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

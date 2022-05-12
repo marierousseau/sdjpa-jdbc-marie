@@ -26,11 +26,11 @@ public class BookRepositoryTest {
     @Autowired
     BookRepository bookRepository;
 
-    @Test
-    void testBookJPANamedQuery() {
-        Book book = bookRepository.jpaNamed("Clean Code");
-        assertThat(book).isNotNull();
-    }
+//    @Test
+//    void testBookJPANamedQuery() {
+//        Book book = bookRepository.jpaNamed("Clean Code");
+//        assertThat(book).isNotNull();
+//    }
 
     @Test
     void testBookQueryNative() {

@@ -3,7 +3,7 @@ package com.marie.springjdbc.domain;
 import javax.persistence.*;
 import java.util.Objects;
 
-@NamedQuery(name = "Book.jpaNamed", query = "FROM Book b where b.title = :title")
+//@NamedQuery(name = "Book.jpaNamed", query = "FROM Book b where b.title = :title")
 @Entity
 public class Book {
 

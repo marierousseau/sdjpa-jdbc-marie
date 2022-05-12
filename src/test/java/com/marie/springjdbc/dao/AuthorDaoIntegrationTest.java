@@ -1,7 +1,7 @@
 package com.marie.springjdbc.dao;
 
 
-import com.marie.springjdbc.dao.AuthorDao;
+import com.marie.springjdbc.dao.authordao.AuthorDao;
 import com.marie.springjdbc.domain.Author;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

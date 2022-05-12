@@ -48,6 +48,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
+
         </dependency>
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
@@ -104,6 +105,17 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>8.5.10</version>
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306/bookdb2?</url>
+                    <user>bookadmin</user>
+                    <password>password</password>
+                </configuration>
+
+            </plugin>
+            <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <version>1.5.8</version>
@@ -133,6 +145,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
     </build>
 
 </project>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="html">
+<head>
+    <head th:replace="common/header :: head"></head>
+
+    <!-- Add additional custom css here - START -->
+
+
+    <!-- Add additional custom css here - END -->
+</head>
+<body>
+<div th:replace="common/header :: top-navigation">...</div>
+
+<!-- Add page specific code/html START -->
+
+<div class="container my-2">
+    <h1>Book List</h1>
+
+    <a th:href = "@{/showNewBookForm}"  class="btn btn-primary btn-sm mb-3"> Add Book </a>
+    <hr>
+
+    <form th:action="@{/searchBooks}">
+        Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+        &nbsp;
+        <input type="submit" value="Search" />
+        &nbsp;
+        <input type="button" value="Clear" id="btnClear" onclick="clearFilter()" />
+    </form>
+    <script type="text/javascript">
+        function clearFilter() {
+            window.location = "/admin/book_list";
+        }
+    </script>
+
+    <hr>
+
+
+
+    <table th:border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                <a th:href="@{'/page2/' + ${currentPage2} + '?sortField2=title&sortDir=' + ${reverseSortDir2}}">
+                    Book Title</a>
+            </th>
+            <th>
+                <a th:href="@{'/page2/' + ${currentPage2} + '?sortField2=publisher&sortDir=' + ${reverseSortDir2}}">
+                   Publisher</a>
+            </th>
+            <th>
+                <a th:href="@{'/page2/' + ${currentPage2} + '?sortField2=isbn&sortDir=' + ${reverseSortDir2}}">
+                    ISBN</a>
+            </th>
+            <th>
+                <a th:href="@{'/page2/' + ${currentPage2} + '?sortField2=id&sortDir=' + ${reverseSortDir2}}">
+                   Book ID</a>
+            </th>
+
+            <th> Actions </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${listBooks}">
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.publisher}"></td>
+            <td th:text="${book.isbn}"></td>
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.authorId}"></td>
+            <td> <a th:href="@{/showFormForBookUpdate/{id}(id=${book.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteBook/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if = "${totalPages2 > 1}">
+        <div class = "row col-sm-10">
+            <div class = "col-sm-2">
+                Total Rows: [[${totalItems2}]]
+            </div>
+            <div class = "col-sm-6">
+					<span th:each="i: ${#numbers.sequence(1, totalPages2)}">
+						<a th:if="${currentPage2 != i}" th:href="@{'/page2/' + ${i}+ '?sortField2=' + ${sortField2} + '&sortDir2=' + ${sortDir2}}">[[${i}]]</a>
+						<span th:unless="${currentPage2 != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+            </div>
+            <div class = "col-sm-1">
+                <a th:if="${currentPage2 < totalPages2}" th:href="@{'/page2/' + ${currentPage2 + 1}+ '?sortField2=' + ${sortField2} + '&sortDir2=' + ${sortDir2}}">Next</a>
+                <span th:unless="${currentPage2 < totalPages2}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage2 < totalPages2}" th:href="@{'/page2/' + ${totalPages2}+ '?sortField2=' + ${sortField2} + '&sortDir2=' + ${sortDir2}}">Last</a>
+                <span th:unless="${currentPage2 < totalPages2}">Last</span>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Add page specific code/html END -->
+
+<div th:replace="common/footer :: footer">...</div>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 package com.marie.springjdbc;
 
-import com.marie.springjdbc.dao.AuthorDao;
-import com.marie.springjdbc.dao.BookDao;
+import com.marie.springjdbc.dao.authordao.AuthorDao;
+import com.marie.springjdbc.dao.bookdao.BookDao;
 import com.marie.springjdbc.domain.Author;
 import com.marie.springjdbc.domain.Book;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ActiveProfiles("local")
 @DataJpaTest
-@ComponentScan(basePackages = {"guru.springframework.jdbc.dao"})
+@ComponentScan(basePackages = {"com/marie/springjdbc/dao"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class DaoIntegrationTest {
     @Autowired
@@ -78,12 +78,7 @@ public class DaoIntegrationTest {
         assertThat(saved).isNotNull();
     }
 
-    @Test
-    void testGetBookByName() {
-        Book book = bookDao.findBookByTitle("Clean Code");
 
-        assertThat(book).isNotNull();
-    }
 
     @Test
     void testGetBook() {
